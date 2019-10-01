@@ -107,14 +107,14 @@ export default new Vuex.Store({
       try {
         let res = await api.delete(`/boards/${data._id}`)
         dispatch('getBoards')
-        router.push({name:'boards'})
-      } catch (error) { console.error(error)}
+        router.push({ name: 'boards' })
+      } catch (error) { console.error(error) }
     },
 
     async backNav({ dispatch }) {
       let res = await api.get('boards')
       dispatch('getBoards')
-      router.push({name:'boards'})
+      router.push({ name: 'boards' })
     },
 
     //#endregion
@@ -171,14 +171,14 @@ export default new Vuex.Store({
         dispatch('getTasks', data.listId)
       } catch (error) { console.error(error) }
     },
-    async moveTask({ commit, dispatch }, payload) {
+    async moveTask({ commit, dispatch }, task) {
       try {
-        let res = await api.put(`tasks/${payload.taskId}`, payload)
-        dispatch('getTasks', payload.currentListId)
-        dispatch('getTasks', payload.listId)
+        let res = await api.put(`tasks/${task._id}`, task)
+        // dispatch('getTasks', task.listId)
+        // dispatch('getTasks', task.listId)
       } catch (error) { console.error(error) }
     },
-//set task to new listId
+    //set task to new listId
     //#endregion
 
     //#region --COMMENTS--
